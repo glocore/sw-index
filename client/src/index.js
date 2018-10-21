@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './scenes/search';
-// import App from './App'
+// import App from './scenes/search';
+import App from './App'
 import * as serviceWorker from './serviceWorker';
 import dotenv from 'dotenv'
 

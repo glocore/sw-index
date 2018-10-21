@@ -1,9 +1,6 @@
 // lib imports
 import React from 'react'
 import styled from 'styled-components'
-import _ from 'lodash'
-import ApolloClient from "apollo-boost";
-import gql from "graphql-tag";
 import { 
   compose,
   withHandlers,
@@ -11,37 +8,54 @@ import {
 } from 'recompose'
 
 // app imports
-import SearchBox from './components/SearchBox'
+import {
+  SearchBox,
+  SearchResults,
+} from './components'
+import services from './services'
 
-const client = new ApolloClient({
-  uri: process.env.CLIENT_BASE_URL
-});
-
-const searchPeople = async value => {
-  const response = await client
-  .query({
-    query: gql`
-      {
-        searchResults(name: "${value}") {
-          name
-          birth_year
-          eye_color
-          gender
-        }
-      }
-    `
-  })
-
-  return response.data.searchResults
-}
+const { searchPeople } = services
 
 const Search = ({ onChangeText, searchResults, loading }) => (
-  <>
-    <SearchBox onChangeText={onChangeText}/>
-    {loading && <p>Loading...</p>}
-    {!loading && searchResults.map((result, index) => <p key={index}>{result.name}</p>)}
-  </>
+  <PageWrapper>
+    <SearchSection>
+      <SearchBox onChangeText={onChangeText}/>
+      <SearchResults
+        loading={loading}
+        results={searchResults}
+      />
+    </SearchSection>
+
+    <ShowcaseSection></ShowcaseSection>
+    
+  </PageWrapper>
 )
+
+const PageWrapper = styled.div`
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  background-color: ${({ theme }) => theme.palette.pageBackground};
+  ${({ theme }) => theme.media.tablet`
+    flex-direction: column;
+  `}
+`
+
+const SearchSection = styled.div`
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  border-right: 2px solid ${({ theme }) => theme.palette.primary};
+  ${({ theme }) => theme.media.tablet`
+    max-height: 50%;
+    border: none;
+    border-bottom: 2px solid ${theme.palette.primary};
+  `}
+`
+
+const ShowcaseSection = styled.div`
+  flex: 1;
+`
 
 export default compose(
   withState('searchResults', 'updateResults', []),
@@ -51,7 +65,6 @@ export default compose(
       props.toggleLoading(true)
       const results = await searchPeople(value)
       props.updateResults(results)
-      console.log(results)
       props.toggleLoading(false)
     }
   }),
