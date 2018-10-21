@@ -1,6 +1,9 @@
 // lib imports
 import React from 'react'
-import styled from 'styled-components'
+import styled, { keyframes } from 'styled-components'
+
+// app imports
+import deathStar from 'assets/img/death-star.png'
 
 const SearchResults = ({ results, loading }) => (
   <SearchResultsWrapper>
@@ -13,7 +16,9 @@ const SearchResults = ({ results, loading }) => (
 )
 
 const LoadingIndicator = () => (
-  <LoadingText>Loading...</LoadingText>
+  <LoadingWrapper>
+    <LoadingImage src={deathStar} />
+  </LoadingWrapper>
 )
 
 const SearchResult = ({ name }) => (
@@ -43,11 +48,30 @@ const SearchResultsWrapper = styled.div`
   }
 `
 
-const LoadingText = styled.p`
-  color: white;
-  ${({ theme }) => `
-    padding: ${theme.padding.vertical.main} ${theme.padding.horizontal.page};
-  `}
+const LoadingWrapper = styled.div`
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+`
+
+const pulse = keyframes`
+  0% {
+    opacity: 0.2;
+  }
+  
+  50% {
+    opacity: 0.9;
+  }
+
+  100% {
+    opacity: 0.2;
+  }
+`
+
+const LoadingImage = styled.img`
+  width: 70px;
+  animation: ${pulse} 1.5s linear infinite;
 `
 
 const SearchResultContainer = styled.div`
