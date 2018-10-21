@@ -18,6 +18,7 @@ module.exports = gql`
   }
 
   type Query {
-    people: [Person]
+    allPeople: [Person]
+    searchResults(name: String!): [Person]
   }
 `

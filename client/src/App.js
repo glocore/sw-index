@@ -25,7 +25,7 @@ class App extends Component {
     .query({
       query: gql`
         {
-          people {
+          searchResults(name: "p") {
             name
             birth_year
             eye_color
@@ -36,7 +36,7 @@ class App extends Component {
     })
     .then(result => {
       console.log(result)
-      this.setState({ people: result.data.people })
+      this.setState({ people: result.data.searchResults })
     });
   }
 
