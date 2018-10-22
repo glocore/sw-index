@@ -12,8 +12,12 @@
     "react-apollo": "^2.2.4",
     "react-dom": "^16.5.2",
     "react-icons": "^3.2.1",
+    "react-redux": "^5.0.7",
     "react-scripts": "2.0.5",
     "recompose": "^0.30.0",
+    "redux": "^4.0.1",
+    "redux-thunk": "^2.3.0",
+    "reduxsauce": "^1.0.0",
     "styled-components": "^4.0.2"
   },
   "scripts": {
@@ -31,5 +35,8 @@
     "not ie <= 11",
     "not op_mini all"
   ],
-  "proxy": "http://localhost:4000/"
+  "proxy": "http://localhost:4000/",
+  "devDependencies": {
+    "redux-logger": "^3.0.6"
+  }
 }

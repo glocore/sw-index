@@ -1,16 +1,23 @@
 // lib imports
 import React from 'react'
 import styled, { keyframes } from 'styled-components'
+import { compose, withHandlers } from 'recompose'
+import { connect } from 'react-redux'
 
 // app imports
 import deathStar from 'assets/img/death-star.png'
+import searchOperations from '../redux/operations'
 
-const SearchResults = ({ results, loading }) => (
+const SearchResults = ({ results, loading, onSelect }) => (
   <SearchResultsWrapper>
     {loading && <LoadingIndicator/>}
     {!loading && results.map((result, index) => 
-      <SearchResult key={index} name={result.name}/>)
-    }
+      <SearchResult 
+        key={index} 
+        data={result}
+        onSelect={onSelect}
+      />
+    )}
   </SearchResultsWrapper>
 
 )
@@ -21,9 +28,9 @@ const LoadingIndicator = () => (
   </LoadingWrapper>
 )
 
-const SearchResult = ({ name }) => (
-  <SearchResultContainer onClick={() => console.log('lol')}>
-    <SearchResultText>{name}</SearchResultText>
+const SearchResult = ({ data, onSelect }) => (
+  <SearchResultContainer onClick={() => onSelect(data)}>
+    <SearchResultText>{data.name}</SearchResultText>
   </SearchResultContainer>
 )
 
@@ -90,4 +97,22 @@ const SearchResultText = styled.p`
   color: white;
 `
 
-export default SearchResults
+const mapStateToProps = state => ({})
+
+const mapDispatchToProps = dispatch => {
+  const { updateSelectedCharacter } = searchOperations
+
+  return {
+    updateSelectedCharacter: selectedCharacter => 
+      dispatch(updateSelectedCharacter(selectedCharacter))
+  }
+}
+
+export default compose(
+  connect(mapStateToProps, mapDispatchToProps),
+  withHandlers({
+    onSelect: props => async selectedCharacter => {
+      props.updateSelectedCharacter(selectedCharacter)
+    }
+  })
+)(SearchResults)

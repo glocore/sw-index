@@ -11,6 +11,7 @@ import {
 import {
   SearchBox,
   SearchResults,
+  Showcase,
 } from './components'
 import services from './services'
 
@@ -26,7 +27,9 @@ const Search = ({ onChangeText, searchResults, loading }) => (
       />
     </SearchSection>
 
-    <ShowcaseSection></ShowcaseSection>
+    <ShowcaseSection>
+      <Showcase/>
+    </ShowcaseSection>
     
   </PageWrapper>
 )
@@ -55,6 +58,26 @@ const SearchSection = styled.div`
 
 const ShowcaseSection = styled.div`
   flex: 1;
+  overflow: auto;
+  ::-webkit-scrollbar {
+      width: 5px;
+      height: 5px;
+  }
+
+  ::-webkit-scrollbar-track {
+      background: transparent; 
+  }
+
+  ::-webkit-scrollbar-thumb {
+      background: #888; 
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+      background: #555; 
+  }
+  ${({ theme }) => theme.media.tablet`
+    max-height: 50%;
+  `}
 `
 
 export default compose(

@@ -30,6 +30,7 @@ const mediaSizes = {
 
 const fontSize = {
   main: '1rem',
+  huge: '3rem',
   large: '2rem',
   fine: '0.75rem',
 }

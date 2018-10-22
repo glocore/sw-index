@@ -5,7 +5,6 @@ import {
   compose,
   withHandlers,
 } from 'recompose'
-import _ from 'lodash'
 import debounceHandler from '@hocs/debounce-handler'
 import { FaSearch } from 'react-icons/fa'
 

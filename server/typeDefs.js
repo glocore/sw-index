@@ -15,10 +15,17 @@ module.exports = gql`
     species: [String]
     starships: [String]
     vehicles: [String]
+    url: String
+  }
+
+  type Names {
+    names: [String]
   }
 
   type Query {
     allPeople: [Person]
     searchResults(name: String!): [Person]
+    characterDetails(url: String!): Person
+    resourceNames(urls: [String!]): Names
   }
 `
