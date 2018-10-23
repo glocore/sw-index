@@ -12,13 +12,13 @@ const updateSelectedCharacter = selectedCharacter => async dispatch => {
     species: undefined,
     starships: undefined,
     vehicles: undefined,
-  }))
+  }, true))
 
   const characterDetails = await services.getCharacterDetails(selectedCharacter)
   dispatch(updateSelectedCharacterAction({
     ...selectedCharacter,
     ...characterDetails,
-  }))
+  }, false))
 }
 
 export default {

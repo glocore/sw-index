@@ -4,14 +4,18 @@ import { createReducer } from 'reduxsauce'
 // app imports
 import { Types } from './actions'
 
-const INITIAL_STATE = { selectedCharacter: null }
+const INITIAL_STATE = { 
+  selectedCharacter: null,
+  loading: false,
+}
 
 const updateSelectedCharacter = (state = INITIAL_STATE, action) => {
-  const { selectedCharacter } = action
+  const { selectedCharacter, loading } = action
 
   return {
     ...state, 
     selectedCharacter,
+    loading,
   }
 }
 

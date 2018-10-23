@@ -2,13 +2,19 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import styled from 'styled-components'
+import { Code } from 'react-content-loader'
 
-const Showcase = ({ selectedCharacter }) => selectedCharacter && (
+const Showcase = ({ selectedCharacter, loading }) => selectedCharacter && (
   <ShowcaseWrapper>
     <Heading>
       {selectedCharacter.name}
     </Heading>
     {renderCharacterDetails(selectedCharacter)}
+    {loading && <LoadingIndicator 
+      primaryColor="#414856"
+      secondaryColor="#596378"
+      speed={1.5}
+    />}
   </ShowcaseWrapper>
 )
 
@@ -94,10 +100,14 @@ const DetailText = styled.span`
   `};
 `
 
-const mapStateToProps = state => {
-  const { selectedCharacter } = state.search
+const LoadingIndicator = styled(Code)`
+  padding: ${({ theme }) => theme.padding.vertical.main} 0;
+`
 
-  return { selectedCharacter }
+const mapStateToProps = state => {
+  const { selectedCharacter, loading } = state.search
+
+  return { selectedCharacter, loading }
 }
 
 export default connect(mapStateToProps)(Showcase)
