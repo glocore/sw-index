@@ -18,7 +18,7 @@ const {
 
 const SearchBox = ({ onChange }) => (
   <SearchBoxWrapper>
-    <TextBox onChange={onChange} />
+    <TextBox onChange={onChange} placeholder="Search People..." />
     <SearchIcon/>
   </SearchBoxWrapper>
 )
@@ -49,6 +49,7 @@ const TextBox = styled.input`
 `
 
 const SearchBoxWrapper = styled.div`
+  flex: 1;
   display: flex;
   align-items: center;
   ${({ theme }) => `

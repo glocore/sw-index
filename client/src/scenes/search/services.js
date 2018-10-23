@@ -7,6 +7,34 @@ const client = new ApolloClient({
 });
 
 class Services {
+  getAllPeople = async () => {
+    const response = await client
+    .query({
+      query: gql`
+        {
+          allPeople {
+            name
+            birth_year
+            eye_color
+            gender
+            hair_color
+            height
+            mass
+            skin_color
+            homeworld
+            films
+            species
+            starships
+            vehicles
+            url
+          }
+        }
+      `
+    })
+
+    return response.data.allPeople
+  }
+
   searchPeople = async searchTerm => {
     const response = await client
     .query({
