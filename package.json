@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "start": "node .",
-    "heroku-postbuild": "cd client && npm install && npm run build",
+    "build": "npm run build-client && npm start",
+    "build-client": "cd client && npm install && npm run build && cd ..",
+    "heroku-postbuild": "npm run build-client",
     "test": "echo \"Error: no test specified\" && exit 1",
     "server": "node .",
     "server-dev": "nodemon .",

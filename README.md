@@ -1,11 +1,14 @@
 # sw-index
 Search Star Wars characters (mobile-friendly)
 ## Run project
-1. `npm install`
-1. `npm run dev`
+`npm run build`
+
+## Develop
+`npm run dev`
 
 ## Libraries
-- React
-- Redux
-- Recompose
-- Apollo GraphQL
+- [React](https://reactjs.org/)
+- [Redux](https://redux.js.org/)
+- [Recompose](https://github.com/acdlite/recompose/)
+- [Apollo GraphQL](https://www.apollographql.com/)
+- [styled-components](https://www.styled-components.com/)
