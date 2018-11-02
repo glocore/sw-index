@@ -2,6 +2,7 @@ const { ApolloServer }  = require('apollo-server')
 const typeDefs          = require('./typeDefs')
 const resolvers         = require('./resolvers')
 const dataSources       = require('./dataSources')
+const cowsay            = require('cowsay')
 
 require('dotenv').config()
 
@@ -15,7 +16,8 @@ const port = process.env.SERVER_LISTENER_PORT
 
 const startServer = async() => {
   const { url } = await server.listen({ port })
-  console.log(`Server listening at ${url}`)
+  const moo = cowsay.say({ text: `Server listening at ${url}` })
+  console.log(moo)
 }
 
 startServer()
