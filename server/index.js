@@ -12,7 +12,7 @@ const server = new ApolloServer({
   dataSources,
 });
 
-const port = process.env.SERVER_LISTENER_PORT || 4000
+const port = process.env.PORT || 4000
 
 const startServer = async() => {
   const { url } = await server.listen({ port })
